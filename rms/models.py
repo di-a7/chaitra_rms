@@ -22,7 +22,7 @@ class Table(models.Model):
    available = models.BooleanField(default = True)
    
    def __str__(self):
-      return f"Table no.{self.number}- {self.available}"
+      return f"Table no. {self.number}"
 
 class Order(models.Model):
    PENDING = 'P'
