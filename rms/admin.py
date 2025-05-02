@@ -1,6 +1,11 @@
 from django.contrib import admin
 from .models import *
 # Register your models here.
+
+admin.site.site_header = "RMS Admin"
+admin.site.site_title = "RMS Admin Portal"
+admin.site.index_title = "Welcome to Restaurant Management System"
+
 class CategoryAdmin(admin.ModelAdmin):
    list_display = ('id','name')
    list_filter = ('name',)
