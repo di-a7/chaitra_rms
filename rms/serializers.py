@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Category
 
+
 class CategorySerializer(serializers.Serializer):
    id = serializers.IntegerField(read_only= True)
    name = serializers.CharField()
@@ -14,3 +15,10 @@ class CategorySerializer(serializers.Serializer):
       instance.field = validated_data.get("field", instance.field)
       instance.save()
       return instance
+
+class CategorySerializers(serializers.ModelSerializer):
+   class Meta:
+      model = Category
+      # fields = ['name',]
+      # fields = '__all__'
+      exclude = ['id']
