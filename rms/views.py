@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import *
-from .serializers import CategorySerializers
+from .serializers import *
 from rest_framework.serializers import ValidationError
 from rest_framework import status
 from django.shortcuts import get_object_or_404
@@ -52,3 +52,8 @@ class CategoryApiView(ModelViewSet):
       return Response({
          "detail":"Category has been deleted."
       }, status=status.HTTP_204_NO_CONTENT)
+      
+
+class FoodViewset(ModelViewSet):
+   queryset = Food.objects.all()
+   serializer_class = FoodSerialaizers
