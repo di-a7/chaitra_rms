@@ -9,6 +9,10 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView,ListCreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.pagination import PageNumberPagination
+from rest_framework import filters
+from django_filters import rest_framework as filter
+from .filters import FoodFilter
 # Create your views here.
 
 # class CategoryList(ListCreateAPIView):
@@ -55,5 +59,9 @@ class CategoryApiView(ModelViewSet):
       
 
 class FoodViewset(ModelViewSet):
-   queryset = Food.objects.all()
+   queryset = Food.objects.select_related().all()
    serializer_class = FoodSerialaizers
+   pagination_class = PageNumberPagination
+   filter_backends = (filters.SearchFilter,filter.DjangoFilterBackend)
+   filterset_class  = FoodFilter
+   search_fields = ('name',)
