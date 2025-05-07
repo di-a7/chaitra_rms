@@ -39,3 +39,8 @@ class FoodSerialaizers(serializers.ModelSerializer):
    
    def get_price_with_tax(self,food:Food):
       return food.price*0.13 + food.price
+
+class TableSerialzier(serializers.ModelSerializer):
+   class Meta:
+      model = Table
+      fields = '__all__'

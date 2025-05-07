@@ -40,10 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rms',
+    'core',
     
     'rest_framework',
     "debug_toolbar",
     'django_filters',
+    
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -138,5 +141,8 @@ INTERNAL_IPS = [
 ]
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }

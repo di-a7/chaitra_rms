@@ -13,6 +13,8 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework import filters
 from django_filters import rest_framework as filter
 from .filters import FoodFilter
+from .permission import IsAuthenticatedOrReadonly
+# from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 # Create your views here.
 
 # class CategoryList(ListCreateAPIView):
@@ -39,6 +41,7 @@ from .filters import FoodFilter
 class CategoryApiView(ModelViewSet):
    queryset = Category.objects.all()
    serializer_class = CategorySerializers
+   permission_classes = [IsAuthenticatedOrReadonly]
    
    def list(self, request):
       queryset = Category.objects.all()
@@ -65,3 +68,10 @@ class FoodViewset(ModelViewSet):
    filter_backends = (filters.SearchFilter,filter.DjangoFilterBackend)
    filterset_class  = FoodFilter
    search_fields = ('name',)
+   permission_classes = [IsAuthenticatedOrReadonly]
+
+
+class TableViewSet(ModelViewSet):
+   queryset = Table.objects.all()
+   serializer_class = TableSerialzier
+   lookup_field = 'number'
