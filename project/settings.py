@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rms',
+        'NAME': 'res',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -146,3 +146,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+AUTH_USER_MODEL = 'core.User'
